@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'locale_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(
@@ -28,16 +29,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('si'), // Sinhala
-      ],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       locale: provider.locale,
     );
   }
@@ -79,15 +72,19 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               AppLocalizations.of(context)!.helloWorld,
+              style: TextStyle(fontSize: 24),
             ),
+            SizedBox(height: 20),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => changeLanguage(context, 'en'),
               child: const Text('English'),
             ),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => changeLanguage(context, 'si'),
               child: const Text('සිංහල'),
